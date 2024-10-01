@@ -13,6 +13,8 @@ class DataProvider with ChangeNotifier {
   TextEditingController controller1 = TextEditingController();
   TextEditingController controller3 = TextEditingController();
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+
   TextEditingController controller4 = TextEditingController();
   TextEditingController controller5 = TextEditingController();
   TextEditingController controller6 = TextEditingController();
@@ -29,20 +31,16 @@ class DataProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateContact(ContactsModel oldContact,int index) {
-    int index =0;
-    // contactsDatabase.loadContacts().indexOf(oldContact);
-      var updatedContact = ContactsModel(
-          name: controller4.text,
-          email: controller5.text,
-          number: controller6.text
-      );
-      contactsList[index]= updatedContact;
-      contactsDatabase.updateContact(index, updatedContact);
+  void updateContact(ContactsModel oldContact, int index) {
+    var updatedContact = ContactsModel(
+        name: controller4.text,
+        number: controller5.text,
+        email: controller6.text);
+    contactsList[index] = updatedContact;
+    contactsDatabase.updateContact(index, updatedContact);
 
-
-      clearControllers();
-      notifyListeners();
+    clearControllers();
+    notifyListeners();
   }
 
   void clearControllers() {

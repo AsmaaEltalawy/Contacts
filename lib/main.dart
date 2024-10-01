@@ -1,4 +1,3 @@
-import 'package:contacts/Pages/editContact.dart';
 import 'package:contacts/data/models/database_model.dart';
 import 'package:contacts/provider.dart';
 import 'package:flutter/material.dart';
