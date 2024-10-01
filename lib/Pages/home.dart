@@ -1,4 +1,6 @@
 import 'package:contacts/Components/contact_info.dart';
+import 'package:contacts/Pages/addContact.dart';
+import 'package:contacts/Pages/editContact.dart';
 import 'package:contacts/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,13 +15,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    var brovider = Provider.of<DataProvider>(context);
-    // void initState() {
-    //   super.initState();
-    //   if (brovider.box.isNotEmpty) {
-    //     brovider.contactsList = brovider.contactsDatabase.loadContacts();
-    //   }
-    // }
+    var provider = Provider.of<DataProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal.shade700,
@@ -40,16 +37,28 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: ListView.builder(
-          itemCount: brovider.contactsList.length,
+          itemCount: provider.contactsList.length,
           itemBuilder: (context, index) {
-            return ContactInformation(
-              name: brovider.contactsList[index].name,
-              number: brovider.contactsList[index].number,
+            return GestureDetector(
+              onTap: () {
+                final contactInfo = ContactInformation(
+                  name: provider.contactsList[index].name,
+                  number: provider.contactsList[index].number,
+                  email: provider.contactsList[index].email,
+                );
+              Navigator.push(context,MaterialPageRoute(builder: (context) => EditContact(contact: contactInfo),));
+                // Navigator.pushNamed(context, '/AddContact',arguments: provider.contactsList[index]);
+              },
+              child: ContactInformation(
+                name: provider.contactsList[index].name,
+                number: provider.contactsList[index].number,
+                email: provider.contactsList[index].email,
+              ),
             );
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/AddContact');
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>const AddContact()));
         },
         backgroundColor: Colors.teal,
         child: const Icon(

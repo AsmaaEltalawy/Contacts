@@ -8,9 +8,14 @@ class DataProvider with ChangeNotifier {
 
   final box = Hive.box<ContactsModel>('contactsBox');
   List<ContactsModel> contactsList = [];
+
   TextEditingController controller2 = TextEditingController();
   TextEditingController controller1 = TextEditingController();
   TextEditingController controller3 = TextEditingController();
+
+  TextEditingController controller4 = TextEditingController();
+  TextEditingController controller5 = TextEditingController();
+  TextEditingController controller6 = TextEditingController();
 
   void saveContact() {
     var newContact = ContactsModel(
@@ -19,9 +24,26 @@ class DataProvider with ChangeNotifier {
         number: controller3.text);
     contactsList.add(newContact);
     contactsDatabase.addContact(newContact);
+
+    clearControllers();
+    notifyListeners();
+  }
+
+  void updateContact(ContactsModel oldContact) {
+    int index = contactsDatabase.loadContacts().indexOf(oldContact);
+      var updatedContact = ContactsModel(
+          name: controller4.text,
+          email: controller5.text,
+          number: controller6.text
+      );
+      contactsDatabase.updateContact(index, updatedContact);
+      clearControllers();
+      notifyListeners();
+  }
+
+  void clearControllers() {
     controller1.clear();
     controller2.clear();
     controller3.clear();
-    notifyListeners();
   }
 }

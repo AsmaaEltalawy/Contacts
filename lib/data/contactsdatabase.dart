@@ -10,4 +10,7 @@ List<ContactsModel> loadContacts(){
 void addContact(ContactsModel contact){
   box.add(contact);
 }
+   void updateContact(int index, ContactsModel updatedContact) {
+     box.putAt(index, updatedContact);
+   }
 }

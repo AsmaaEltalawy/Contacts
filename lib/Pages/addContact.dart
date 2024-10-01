@@ -1,14 +1,14 @@
+
 import 'package:contacts/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 class AddContact extends StatelessWidget {
   const AddContact({super.key});
 
 //
   @override
   Widget build(BuildContext context) {
-    var brovider = Provider.of<DataProvider>(context);
+    var provider = Provider.of<DataProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +29,7 @@ class AddContact extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
             child: TextFormField(
-              controller: brovider.controller1,
+              controller: provider.controller1,
               cursorColor: Colors.teal,
               decoration: InputDecoration(
                 labelText: 'Name',
@@ -43,7 +43,7 @@ class AddContact extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
             child: TextFormField(
-              controller: brovider.controller3,
+              controller: provider.controller3,
               cursorColor: Colors.teal,
               decoration: InputDecoration(
                   labelText: 'Phone Number',
@@ -56,7 +56,7 @@ class AddContact extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
             child: TextFormField(
-              controller: brovider.controller2,
+              controller: provider.controller2,
               cursorColor: Colors.teal,
               decoration: InputDecoration(
                   labelText: 'Email',
@@ -65,12 +65,16 @@ class AddContact extends StatelessWidget {
                   enabledBorder: label),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
+
           ElevatedButton(
-              onPressed: brovider.saveContact,
-              child: const Text('Save Contact')),
+              onPressed: provider.saveContact,
+
+              child: const Text('Save Contact'),
+
+          ),
           // ),
         ],
       ),

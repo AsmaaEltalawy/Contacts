@@ -1,4 +1,4 @@
-import 'package:contacts/Pages/addcontact.dart';
+import 'package:contacts/Pages/editContact.dart';
 import 'package:contacts/data/models/database_model.dart';
 import 'package:contacts/provider.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ void main() async {
   await Hive.openBox<ContactsModel>('contactsBox');
   runApp(ChangeNotifierProvider(
     create: (context) => DataProvider(),
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
@@ -23,11 +23,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const Home(),
-        routes: {
-          '/AddContact': (context) => AddContact(),
-        });
+        home: Home()
+    );
   }
 }

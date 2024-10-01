@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 class ContactInformation extends StatelessWidget {
   String name;
-
   String number;
-
-  ContactInformation({required this.number, required this.name});
+  String email;
+  ContactInformation({required this.number, required this.name,required this.email});
 
   @override
   Widget build(BuildContext context) {
