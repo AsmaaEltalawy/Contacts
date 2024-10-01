@@ -46,8 +46,11 @@ class _HomeState extends State<Home> {
                   number: provider.contactsList[index].number,
                   email: provider.contactsList[index].email,
                 );
-              Navigator.push(context,MaterialPageRoute(builder: (context) => EditContact(contact: contactInfo),));
-                // Navigator.pushNamed(context, '/AddContact',arguments: provider.contactsList[index]);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditContact(contact: contactInfo),
+                    ));
               },
               child: ContactInformation(
                 name: provider.contactsList[index].name,
@@ -58,7 +61,8 @@ class _HomeState extends State<Home> {
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>const AddContact()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const AddContact()));
         },
         backgroundColor: Colors.teal,
         child: const Icon(

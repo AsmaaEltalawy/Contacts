@@ -9,13 +9,13 @@ class EditContact extends StatelessWidget {
 
   const EditContact({required this.contact});
 
-//
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<DataProvider>(context);
     provider.controller4.text = contact.name;
-    provider.controller5.text = contact.email;
-    provider.controller6.text = contact.number;
+    provider.controller5.text = contact.number;
+    provider.controller6.text = contact.email;
 
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +39,7 @@ class EditContact extends StatelessWidget {
               cursorColor: Colors.teal,
               controller: provider.controller4,
               decoration: InputDecoration(
-                labelText: 'Name',
+                labelText: 'Phone Number',
                 labelStyle: TextStyle(color: Colors.teal.shade900),
                 focusedBorder: label,
                 enabledBorder: label,
@@ -82,7 +82,7 @@ class EditContact extends StatelessWidget {
                   number: contact.number,
                   email: contact.email));
             },
-            child: const Text('Update Contact'),
+            child: const Text('Edit Contact'),
           ),
         ],
       ),

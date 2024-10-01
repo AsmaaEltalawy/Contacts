@@ -36,7 +36,10 @@ class DataProvider with ChangeNotifier {
           email: controller5.text,
           number: controller6.text
       );
+      contactsList[index]= updatedContact;
       contactsDatabase.updateContact(index, updatedContact);
+
+
       clearControllers();
       notifyListeners();
   }
