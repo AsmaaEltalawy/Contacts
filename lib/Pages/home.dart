@@ -1,9 +1,7 @@
 import 'package:contacts/Components/contact_info.dart';
-import 'package:contacts/data/contactsdatabase.dart';
-import 'package:contacts/data/models/database_model.dart';
+import 'package:contacts/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -13,18 +11,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<ContactsModel> contactsList = [];
-  final box = Hive.box<ContactsModel>('contactsBox');
-  var contactsDatabase = ContactsDataBase();
-
-  void initState() {
-    super.initState();
-    if (box.isNotEmpty) {
-      contactsList = contactsDatabase.loadContacts();
-    }
-  }
   @override
   Widget build(BuildContext context) {
+    var brovider = Provider.of<DataProvider>(context);
+    // void initState() {
+    //   super.initState();
+    //   if (brovider.box.isNotEmpty) {
+    //     brovider.contactsList = brovider.contactsDatabase.loadContacts();
+    //   }
+    // }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal.shade700,
@@ -45,17 +40,16 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: ListView.builder(
-          itemCount: contactsList.length,
+          itemCount: brovider.contactsList.length,
           itemBuilder: (context, index) {
             return ContactInformation(
-              name: contactsList[index].name,
-              number: contactsList[index].number,
+              name: brovider.contactsList[index].name,
+              number: brovider.contactsList[index].number,
             );
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, '/AddContact');
-
         },
         backgroundColor: Colors.teal,
         child: const Icon(

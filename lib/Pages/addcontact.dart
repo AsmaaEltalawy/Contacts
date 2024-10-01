@@ -1,41 +1,15 @@
-import 'package:contacts/data/contactsdatabase.dart';
-import 'package:contacts/data/models/database_model.dart';
+import 'package:contacts/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 
-class AddContact extends StatefulWidget {
+class AddContact extends StatelessWidget {
   const AddContact({super.key});
 
-  @override
-  State<AddContact> createState() => _AddContactState();
-}
-
-class _AddContactState extends State<AddContact> {
-
-final box = Hive.box<ContactsModel>('contactsBox');
-  var contactsDatabase = ContactsDataBase();
-  TextEditingController controller2 = TextEditingController();
-  TextEditingController controller1 = TextEditingController();
-  TextEditingController controller3 = TextEditingController();
-  List<ContactsModel> contactsList = [];
-
-  void saveContact() {
-    setState(() {
-      var newContact = ContactsModel(
-          name: controller1.text,
-          email: controller2.text,
-          number: controller3.text);
-      contactsList.add(newContact);
-      contactsDatabase.addContact(newContact);
-
-
-     });
-    Navigator.pop(context);
-    print(box.values.toList());
-  }
-
+//
   @override
   Widget build(BuildContext context) {
+    var brovider = Provider.of<DataProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -55,7 +29,7 @@ final box = Hive.box<ContactsModel>('contactsBox');
             padding:
                 const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
             child: TextFormField(
-              controller: controller1,
+              controller: brovider.controller1,
               cursorColor: Colors.teal,
               decoration: InputDecoration(
                 labelText: 'Name',
@@ -69,7 +43,7 @@ final box = Hive.box<ContactsModel>('contactsBox');
             padding:
                 const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
             child: TextFormField(
-              controller: controller3,
+              controller: brovider.controller3,
               cursorColor: Colors.teal,
               decoration: InputDecoration(
                   labelText: 'Phone Number',
@@ -82,7 +56,7 @@ final box = Hive.box<ContactsModel>('contactsBox');
             padding:
                 const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
             child: TextFormField(
-              controller: controller2,
+              controller: brovider.controller2,
               cursorColor: Colors.teal,
               decoration: InputDecoration(
                   labelText: 'Email',
@@ -95,7 +69,8 @@ final box = Hive.box<ContactsModel>('contactsBox');
             height: 20,
           ),
           ElevatedButton(
-              onPressed: saveContact, child: const Text('Save Contact')),
+              onPressed: brovider.saveContact,
+              child: const Text('Save Contact')),
           // ),
         ],
       ),
