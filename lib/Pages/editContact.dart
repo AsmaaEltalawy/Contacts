@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:contacts/Components/contact_info.dart';
 import 'package:contacts/data/models/database_model.dart';
 import 'package:contacts/provider.dart';
@@ -6,8 +8,9 @@ import 'package:provider/provider.dart';
 
 class EditContact extends StatelessWidget {
   final ContactInformation contact;
+  final int index;
 
-  const EditContact({required this.contact});
+  const EditContact({required this.contact,required this.index});
 
 
   @override
@@ -80,7 +83,7 @@ class EditContact extends StatelessWidget {
               provider.updateContact(ContactsModel(
                   name: contact.name,
                   number: contact.number,
-                  email: contact.email));
+                  email: contact.email),index);
             },
             child: const Text('Edit Contact'),
           ),

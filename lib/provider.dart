@@ -29,8 +29,9 @@ class DataProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateContact(ContactsModel oldContact) {
-    int index = contactsDatabase.loadContacts().indexOf(oldContact);
+  void updateContact(ContactsModel oldContact,int index) {
+    int index =0;
+    // contactsDatabase.loadContacts().indexOf(oldContact);
       var updatedContact = ContactsModel(
           name: controller4.text,
           email: controller5.text,
