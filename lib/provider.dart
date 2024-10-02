@@ -39,7 +39,6 @@ class DataProvider with ChangeNotifier {
     contactsList[index] = updatedContact;
     contactsDatabase.updateContact(index, updatedContact);
 
-    clearControllers();
     notifyListeners();
   }
 

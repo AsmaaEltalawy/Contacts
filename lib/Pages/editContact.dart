@@ -77,12 +77,14 @@ class EditContact extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
+
               provider.updateContact(
                   ContactsModel(
                       name: contact.name,
                       number: contact.number,
                       email: contact.email),
                   index);
+              Navigator.pop(context);
             },
             child: const Text('Edit Contact'),
           ),
