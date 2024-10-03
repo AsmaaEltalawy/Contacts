@@ -88,6 +88,13 @@ class EditContact extends StatelessWidget {
             },
             child: const Text('Edit Contact'),
           ),
+          ElevatedButton(onPressed: (){
+            provider.deleteContact( ContactsModel(
+                name: contact.name,
+                number: contact.number,
+                email: contact.email), index);
+            Navigator.pop(context);
+          }, child: Text('Delete'))
         ],
       ),
     );

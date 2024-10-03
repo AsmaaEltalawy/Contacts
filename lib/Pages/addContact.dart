@@ -1,7 +1,7 @@
-
 import 'package:contacts/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 class AddContact extends StatelessWidget {
   const AddContact({super.key});
 
@@ -70,10 +70,8 @@ class AddContact extends StatelessWidget {
           ),
 
           ElevatedButton(
-              onPressed: provider.saveContact,
-
-              child: const Text('Save Contact'),
-
+            onPressed: provider.saveContact,
+            child: const Text('Save Contact'),
           ),
           // ),
         ],

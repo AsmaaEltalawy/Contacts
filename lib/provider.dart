@@ -13,7 +13,7 @@ class DataProvider with ChangeNotifier {
   TextEditingController controller1 = TextEditingController();
   TextEditingController controller3 = TextEditingController();
 
-/////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
   TextEditingController controller4 = TextEditingController();
   TextEditingController controller5 = TextEditingController();
@@ -39,6 +39,12 @@ class DataProvider with ChangeNotifier {
     contactsList[index] = updatedContact;
     contactsDatabase.updateContact(index, updatedContact);
 
+    notifyListeners();
+  }
+
+  void deleteContact(ContactsModel Contact, int index) {
+    contactsList.removeAt(index);
+    contactsDatabase.delete(index);
     notifyListeners();
   }
 

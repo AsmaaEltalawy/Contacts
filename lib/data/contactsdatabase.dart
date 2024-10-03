@@ -13,4 +13,7 @@ void addContact(ContactsModel contact){
    void updateContact(int index, ContactsModel updatedContact) {
      box.putAt(index, updatedContact);
    }
+   void delete(int index){
+  box.deleteAt(index);
+   }
 }

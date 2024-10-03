@@ -49,7 +49,8 @@ class _HomeState extends State<Home> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EditContact(contact: contactInfo, index: index),
+                      builder: (context) =>
+                          EditContact(contact: contactInfo, index: index),
                     ));
               },
               child: ContactInformation(
