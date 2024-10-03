@@ -14,7 +14,7 @@ class AddContact extends StatelessWidget {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            '(Add Or Edit) Contact',
+            'Add Contact',
             style: TextStyle(color: Colors.white),
           ),
         ),

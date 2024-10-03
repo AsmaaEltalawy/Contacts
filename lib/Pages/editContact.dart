@@ -21,7 +21,7 @@ class EditContact extends StatelessWidget {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            '(Add Or Edit) Contact',
+            '(Delete Or Edit) Contact',
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -75,26 +75,35 @@ class EditContact extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          ElevatedButton(
-            onPressed: () {
-
-              provider.updateContact(
-                  ContactsModel(
-                      name: contact.name,
-                      number: contact.number,
-                      email: contact.email),
-                  index);
-              Navigator.pop(context);
-            },
-            child: const Text('Edit Contact'),
-          ),
-          ElevatedButton(onPressed: (){
-            provider.deleteContact( ContactsModel(
-                name: contact.name,
-                number: contact.number,
-                email: contact.email), index);
-            Navigator.pop(context);
-          }, child: Text('Delete'))
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  provider.updateContact(
+                      ContactsModel(
+                          name: contact.name,
+                          number: contact.number,
+                          email: contact.email),
+                      index);
+                  Navigator.pop(context);
+                },
+                child: const Text('Edit Contact'),
+              ),
+              const SizedBox(width: 20,),
+              ElevatedButton(
+                  onPressed: () {
+                    provider.deleteContact(
+                        ContactsModel(
+                            name: contact.name,
+                            number: contact.number,
+                            email: contact.email),
+                        index);
+                    Navigator.pop(context);
+                  },
+                  child: Text('Delete'))
+            ],
+          )
         ],
       ),
     );
